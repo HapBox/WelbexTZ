@@ -9,6 +9,8 @@ class UrlConst extends RuntimeConst {
 }
 
 export class Constants extends UrlConst {
+  static HEADER_X_ACCESS_TOKEN: string = 'x-access-token';
+  static NANOID_LENGTH = 128;
   static SERVICE_NAME = 'SERVICE-NAME';
   static HEADER_ACCESS_TOKEN: string = 'accessToken'; //Название заголовка для - accessToken
 }

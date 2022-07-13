@@ -13,7 +13,7 @@ class ProcessENV {
   //Всё что касается основной БД
   public DB_URL: string = 'localhost';
   public DB_PORT: number = 5432;
-  public DB_NAME: string = 'authorization';
+  public DB_NAME: string = 'authorization_db';
   public DB_USERNAME: string = '';
   public DB_PASSWORD: string = '';
 }
