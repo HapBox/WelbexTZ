@@ -35,7 +35,7 @@ export default class App {
     const app = new App();
 
     await app.initRuntimeData();
-    // await app.initDb();
+    await app.initDb();
     app.initMiddlewares();
     app.initControllers();
     app.initErrorHandling();

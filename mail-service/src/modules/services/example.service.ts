@@ -1,6 +1,6 @@
 import Item from 'database/models/final/item.model';
 import { CreateItemDto } from 'modules/dto/create-item.dto';
-import { UpdateItemDto } from 'modules/dto/update-item.dto';
+import { UserCreateDto } from 'modules/dto/update-item.dto';
 import { throwError } from 'utils/http-exception';
 
 export default class ExampleService {
@@ -27,7 +27,7 @@ export default class ExampleService {
     return item;
   }
 
-  static async updateItem(id: string, dto: UpdateItemDto) {
+  static async updateItem(id: string, dto: UserCreateDto) {
     const item = await this.getItemById(id);
 
     await item.update(dto);

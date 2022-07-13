@@ -3,7 +3,7 @@ import { NextFunction, Response } from 'express';
 import { dtoValidator } from 'middlewares/validate';
 import BaseRequest from 'modules/base/base.request';
 import { CreateItemDto } from 'modules/dto/create-item.dto';
-import { UpdateItemDto } from 'modules/dto/update-item.dto';
+import { UserCreateDto } from 'modules/dto/update-item.dto';
 import ExampleService from 'modules/services/example.service';
 
 @ApiController('/example')
@@ -31,11 +31,11 @@ class ExampleController {
   }
 
   @PATCH('/:id', {
-    handlers: [dtoValidator(UpdateItemDto)],
+    handlers: [dtoValidator(UserCreateDto)],
   })
   async updateTemplate(req: BaseRequest, res: Response, next: NextFunction) {
     const id = req.params.id;
-    const dto: UpdateItemDto = req.body;
+    const dto: UserCreateDto = req.body;
     const item = await ExampleService.updateItem(id, dto);
     res.json(item);
   }
