@@ -1,25 +1,76 @@
+import Note from 'database/models/final/note.model';
 import { NoteCreateUpdateDto } from 'modules/dto/note-create-update.dto';
 import { NoteGetOneDto } from 'modules/dto/note-get-one';
 import { throwError } from 'utils/http-exception';
 
 export default class NoteService {
   static async getNoteList(userId: string) {
-    return 'GetList ok'
+    const noteList = await Note.findAll({
+      where: {
+        userId: userId,
+      },
+    });
+
+    return noteList;
   }
 
   static async getNoteById(dto: NoteGetOneDto) {
-    return 'GetOne ok'
+    const note = await Note.findOne({
+      where: {
+        userId: dto.userId,
+        id: dto.id,
+      },
+    });
+
+    if (!note) {
+      throwError({
+        statusCode: 404,
+        message: 'Not found',
+      });
+    }
+    return note;
   }
 
-  static async createItem(dto: NoteCreateUpdateDto) {
-    return 'Create ok'
+  static async createNote(dto: NoteCreateUpdateDto) {
+    const note = await Note.create({ ...dto });
+    return note;
   }
 
-  static async updateItem(dto: NoteCreateUpdateDto) {
-    return 'Update ok'
+  static async updateNote(dto: NoteCreateUpdateDto) {
+    const note = await Note.findOne({
+      where: {
+        userId: dto.userId,
+        id: dto.id,
+      },
+    });
+
+    if (!note) {
+      throwError({
+        statusCode: 404,
+        message: 'Not found',
+      });
+    }
+
+    note.update({ ...dto });
+    return note;
   }
 
   static async deleteItem(dto: NoteGetOneDto) {
-    return 'Delete ok'
+    const note = await Note.findOne({
+      where: {
+        userId: dto.userId,
+        id: dto.id,
+      },
+    });
+
+    if (!note) {
+      throwError({
+        statusCode: 404,
+        message: 'Not found',
+      });
+    }
+
+    await note.destroy();
+    return 'Note destroyed';
   }
 }
