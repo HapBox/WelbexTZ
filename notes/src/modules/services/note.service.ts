@@ -55,7 +55,7 @@ export default class NoteService {
     return note;
   }
 
-  static async deleteItem(dto: NoteGetOneDto) {
+  static async deleteNote(dto: NoteGetOneDto) {
     const note = await Note.findOne({
       where: {
         userId: dto.userId,

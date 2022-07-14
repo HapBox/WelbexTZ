@@ -36,7 +36,7 @@ class ExampleController {
   })
   async createNote(req: BaseRequest, res: Response, next: NextFunction) {
     const dto: NoteCreateUpdateDto = req.body;
-    const item = await NoteService.createItem(dto);
+    const item = await NoteService.createNote(dto);
     res.json(item);
   }
 
@@ -46,7 +46,7 @@ class ExampleController {
   })
   async updateNote(req: BaseRequest, res: Response, next: NextFunction) {
     const dto: NoteCreateUpdateDto = { ...req.body, id: req.params.id };
-    const item = await NoteService.updateItem(dto);
+    const item = await NoteService.updateNote(dto);
     res.json(item);
   }
 
@@ -56,7 +56,7 @@ class ExampleController {
       id: req.params.id,
       userId: req.body.id,
     };
-    const result = await NoteService.deleteItem(dto);
+    const result = await NoteService.deleteNote(dto);
     res.json(result);
   }
 }
