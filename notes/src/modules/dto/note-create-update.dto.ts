@@ -4,8 +4,6 @@ import { BaseDto } from 'modules/base/base.dto';
 export class NoteCreateUpdateDto extends BaseDto {
   id!: string;
 
-  @IsString()
-  @IsNotEmpty()
   userId!: string;
 
   @IsNotEmpty()

@@ -6,7 +6,7 @@ export class NoteGetOneDto extends BaseDto {
   @IsNotEmpty()
   id!: string;
 
-  @IsNotEmpty()
   @IsString()
+  @IsNotEmpty()
   userId!: string;
 }
