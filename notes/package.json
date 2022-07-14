@@ -7,13 +7,14 @@
   "scripts": {
     "build": "tsc",
     "dev": "nodemon -r dotenv/config -r tsconfig-paths/register src/index.ts",
-    "global-stand": "sequelize-cli db:migrate && node -r dotenv/config -r tsconfig-paths/register dist/index.js",
+    "global-stand": "node -r dotenv/config -r tsconfig-paths/register dist/index.js",
     "test": "docker-compose -f docker-compose-jest.yaml up --abort-on-container-exit --force-recreate --build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/jsonwebtoken": "^8.5.8",
     "axios": "^0.26.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
@@ -24,6 +25,8 @@
     "glob": "^7.2.0",
     "helmet": "^5.0.2",
     "ip": "^1.1.5",
+    "jsonwebtoken": "^8.5.1",
+    "kafka-node": "^5.0.0",
     "morgan": "^1.10.0",
     "nanoid": "^3.3.2",
     "pg": "^8.7.3",

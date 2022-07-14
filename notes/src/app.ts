@@ -33,7 +33,7 @@ export default class App {
 
   static async create(): Promise<App> {
     const app = new App();
-
+    
     await app.initRuntimeData();
     await app.initDb();
     app.initMiddlewares();

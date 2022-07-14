@@ -2,7 +2,7 @@ import { NextFunction, Response } from 'express';
 import BaseRequest from '../modules/base/base.request';
 import { Constants } from '../utils/constants';
 import { throwError } from '../utils/http-exception';
-import  jwt  from 'jsonwebtoken'
+import jwt from 'jsonwebtoken';
 import UtilsENVConfig from 'utils/utils-env-config';
 
 export const requireToken = async (req: BaseRequest, res: Response, next: NextFunction) => {

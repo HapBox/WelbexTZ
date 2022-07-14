@@ -1,5 +1,4 @@
-import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
-import Token from './token.model';
+import { Column, DataType, Model, Table } from 'sequelize-typescript';
 
 @Table({
   timestamps: true,
@@ -36,7 +35,4 @@ export default class User extends Model {
     allowNull: false,
   })
   public password!: string;
-
-  @HasMany(() => Token, 'userId')
-  public tokenList!: Token[];
 }

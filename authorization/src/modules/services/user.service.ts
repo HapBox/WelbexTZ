@@ -1,4 +1,3 @@
-import Token from 'database/models/final/token.model';
 import User from 'database/models/final/user.model';
 import { AuthInfoDto } from 'modules/dto/auth-info.dto';
 import { UserPatchDto } from 'modules/dto/user-patch.dto';
@@ -34,14 +33,7 @@ export default class UserService {
         message: 'Not found',
       });
     }
-
-    const tokens = await Token.findAll({
-      where: {
-        userId: userId,
-      },
-    });
-
-    await tokens.forEach(token => token.destroy());
+    
     await user.destroy();
     return 'Ваш профиль удален';
   }

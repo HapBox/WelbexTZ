@@ -5,17 +5,19 @@ class ProcessENV {
   public CUSTOM_ENV: ENVTypes = ENVTypes.DEV;
 
   //Порты для запуска самого сервера
-  public PORT: number = 3000;
+  public PORT: number = 3001;
 
   //URL
   public URL: string = '';
 
+  public SECRET_STRING: string = '';
+
   //Всё что касается основной БД
-  public DB_URL: string = 'localhost';
+  public DB_URL: string = 'postgres';
   public DB_PORT: number = 5432;
   public DB_NAME: string = 'notes_db';
-  public DB_USERNAME: string = '';
-  public DB_PASSWORD: string = '';
+  public DB_USERNAME: string = 'postgres';
+  public DB_PASSWORD: string = 'postgres';
 }
 
 export default class UtilsENVConfig {

@@ -1,7 +1,8 @@
-import Token from 'database/models/final/token.model';
 import User from 'database/models/final/user.model';
 import { AuthInfoDto } from 'modules/dto/auth-info.dto';
 import { throwError } from 'utils/http-exception';
+import UtilsENVConfig from 'utils/utils-env-config';
+import  jwt  from 'jsonwebtoken'
 
 export default class AuthService {
   static async registration(dto: AuthInfoDto) {
@@ -19,11 +20,8 @@ export default class AuthService {
     }
 
     user = await User.create({ ...dto });
-    let token = await Token.create({
-      userId: user.id,
-    });
-
-    return token.value;
+    const token = jwt.sign({ id: user.id }, UtilsENVConfig.getProcessEnv().SECRET_STRING);
+    return token;
   }
 
   static async login(dto: AuthInfoDto) {
@@ -41,10 +39,7 @@ export default class AuthService {
       });
     }
 
-    let token = await Token.create({
-      userId: user.id,
-    });
-
-    return token.value
+    const token = jwt.sign({ id: user.id }, UtilsENVConfig.getProcessEnv().SECRET_STRING);
+    return token;
   }
 }
