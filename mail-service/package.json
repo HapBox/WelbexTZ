@@ -7,7 +7,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "nodemon -r dotenv/config -r tsconfig-paths/register src/index.ts",
-    "global-stand": "sequelize-cli db:migrate && node -r dotenv/config -r tsconfig-paths/register dist/index.js",
+    "global-stand": "node -r dotenv/config -r tsconfig-paths/register dist/index.js",
     "test": "docker-compose -f docker-compose-jest.yaml up --abort-on-container-exit --force-recreate --build"
   },
   "keywords": [],
@@ -24,8 +24,10 @@
     "glob": "^7.2.0",
     "helmet": "^5.0.2",
     "ip": "^1.1.5",
+    "kafka-node": "^5.0.0",
     "morgan": "^1.10.0",
     "nanoid": "^3.3.2",
+    "nodemailer": "^6.7.7",
     "pg": "^8.7.3",
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.17.0",
@@ -35,6 +37,8 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@types/kafka-node": "^3.0.0",
+    "@types/nodemailer": "^6.4.4",
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/express-fileupload": "^1.2.2",

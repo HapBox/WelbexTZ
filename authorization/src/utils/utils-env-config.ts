@@ -11,6 +11,8 @@ class ProcessENV {
   public URL: string = '';
 
   public SECRET_STRING: string = '';
+  public KAFKA_BOOTSTRAP_SERVER: string = '';
+  public KAFKA_TOPIC: string = '';
 
   //Всё что касается основной БД
   public DB_URL: string = 'postgres';

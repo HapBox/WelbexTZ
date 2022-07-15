@@ -10,6 +10,9 @@ class ProcessENV {
   //URL
   public URL: string = '';
 
+  public KAFKA_BOOTSTRAP_SERVER: string = '';
+  public KAFKA_TOPIC: string = '';
+
   //Всё что касается основной БД
   public DB_URL: string = 'localhost';
   public DB_PORT: number = 5432;

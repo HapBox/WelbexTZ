@@ -15,6 +15,8 @@ import { notFound } from './middlewares/not-found';
 import { Constants } from './utils/constants';
 import UtilsENVConfig from './utils/utils-env-config';
 import Log from './utils/utils-log';
+import kafka from 'kafka-node';
+import { transporter } from './helpers/nodemailer';
 
 export default class App {
   private app: express.Application;
@@ -33,13 +35,32 @@ export default class App {
 
   static async create(): Promise<App> {
     const app = new App();
-
     await app.initRuntimeData();
     // await app.initDb();
-    app.initMiddlewares();
-    app.initControllers();
-    app.initErrorHandling();
+    // app.initMiddlewares();
+    // app.initControllers();
 
+    const client = new kafka.KafkaClient({ kafkaHost: UtilsENVConfig.getProcessEnv().KAFKA_BOOTSTRAP_SERVER });
+    const consumer = new kafka.Consumer(client, [{ topic: UtilsENVConfig.getProcessEnv().KAFKA_TOPIC }], {
+      autoCommit: false,
+    });
+    let text = "Your success registered to notes system!";
+    consumer.on('message', async (message) => {
+      const mail: string = <any>message.value; 
+      transporter.sendMail({
+        from: '"Note System" <matyashnotests@outlook.com>',
+        to: mail,
+        subject: 'Welcome',
+        text: text,
+        html: text,
+      });
+    });
+
+    consumer.on('error', async (error) => {
+      console.log(error);
+    })
+
+    app.initErrorHandling();
     return app;
   }
 
